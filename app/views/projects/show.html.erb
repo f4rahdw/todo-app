@@ -1,0 +1,70 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @project %>
+
+
+
+<div style="height: 1px; width: 100%; background-color: grey"></div>
+
+
+<p><b>Summary : </b> <%= count = @project.todos.where(status: true).count %>/<%= @project.todos.count %> todos completed</p>
+
+
+<%= button_to "Create a New Todo", new_project_todo_path(@project), method: :get %>
+<br>
+
+<% if !@project.todos.nil? %>
+<div>
+<h3>Pending</h3>
+  <% if @project.todos.where(status: false).count > 0 %>
+  <% @project.todos.where(status: false).each do |todo| %>
+  <div style="display: flex; align-items: center">
+    <input type="checkbox" >
+    <div style="width: 20px"></div>
+      <p style="font-size: 17px"><%= todo.description %></p>
+    <div style="width: 20px"></div>
+    <%= button_to "View", project_todo_path(@project,todo), method: :get %>
+    <div style="width: 20px"></div>
+    <%= button_to "Update", edit_project_todo_path(@project,todo), method: :get %>
+    <div style="width: 20px"></div>
+    <%= button_to "Delete" , project_todo_path(@project, todo), method: :delete %>
+  </div>
+  <%end %>
+    <%else %>
+     <h5>- None -</h5>
+    <%end %>
+</div>
+
+<div>
+  <h3>Completed</h3>
+  <% if @project.todos.where(status: true).count > 0 %>
+  <% @project.todos.where(status: true).each do |todo| %>
+    <div style="display: flex; align-items: center">
+      <input type="checkbox" checked="true">
+      <div style="width: 20px"></div>
+      <p style="font-size: 17px"><%= todo.description %></p>
+      <div style="width: 20px"></div>
+      <%= button_to "View", project_todo_path(@project,todo), method: :get %>
+      <div style="width: 20px"></div>
+      <%= button_to "Update", edit_project_todo_path(@project,todo), method: :get %>
+      <div style="width: 20px"></div>
+      <%= button_to "Delete" , project_todo_path(@project, todo), method: :delete %>
+    </div>
+  <%end %>
+    <%else %>
+    <h5>- None -</h5>
+    <%end %>
+</div>
+
+<%end %>
+
+
+<br>
+<div style="display: flex">
+  <%=button_to "Edit this project", edit_project_path(@project), method: :get %>
+  <div style="width: 20px"></div>
+
+  <%= button_to "Delete this project", @project, method: :delete %>
+  <div style="width: 20px"></div>
+  <%= button_to "Back to projects", projects_path, method: :get %>
+</div>

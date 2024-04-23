@@ -1,0 +1,11 @@
+<h1>Editing Project Title</h1>
+
+<%= render "form", project: @project %>
+
+<br>
+
+<div style="display: flex;">
+  <%= button_to "Show this project", @project, method: :get %>
+  <div style="width: 20px"></div>
+  <%= button_to "Back to projects", projects_path, method: :get %>
+</div>

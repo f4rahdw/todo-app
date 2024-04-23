@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+<%= button_to 'Log out',destroy_user_session_path, method: :delete %>
+<h1>Projects</h1>
+<%= button_to "Create a New project", new_project_path, method: :get %>
+<div id="projects">
+  <% @projects.each do |project| %>
+    <div>
+    <%= render project %>
+
+      <%= link_to "Show this project", project %>
+
+    </div>
+  <% end %>
+</div>
+
+
