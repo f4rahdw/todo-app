@@ -9,7 +9,7 @@
   * After authentication, Projects lists page is dispalyed, where the project can be created
   * Each project has its associated Todos in a seperate page
 
-    #Tables created
+    # Tables created: 
 
     * Project table : id, title, created_at, updated_at, user_id
     * Todo table : id, description, status, created_at, updated_at, project_id
